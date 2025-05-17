@@ -1,0 +1,93 @@
+﻿<Window
+    x:Class="FlashGen.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="FlashGen – AI Flashcard Generator"
+    Width="1000"
+    Height="800"
+    Background="{StaticResource BackgroundBrush}"
+    WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="{StaticResource DropZoneHeight}" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  Title  -->
+        <TextBlock Style="{StaticResource TitleTextStyle}" Text="{StaticResource AppTitle}" />
+
+        <!--  Drop Zone  -->
+        <Border
+            x:Name="DropZone"
+            Grid.Row="1"
+            AllowDrop="True"
+            DragOver="OnDragOverDropZone"
+            Drop="OnFileDroppedIntoZone"
+            Style="{StaticResource DropZoneBorderStyle}">
+            <TextBlock
+                x:Name="DropZoneText"
+                Style="{StaticResource PlaceholderTextStyle}"
+                Text="{StaticResource DropZonePrompt}" />
+        </Border>
+
+        <!--  Flashcard Preview  -->
+        <Border Grid.Row="2" Style="{StaticResource FlashcardPreviewBorderStyle}">
+            <Grid>
+                <!--  Placeholder message  -->
+                <TextBlock
+                    x:Name="FlashcardPlaceholderText"
+                    Style="{StaticResource PlaceholderTextStyle}"
+                    Text="Generated flashcards will appear here"
+                    Visibility="Visible" />
+
+                <!--  Flashcards  -->
+                <ScrollViewer>
+                    <ItemsControl x:Name="FlashcardList">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Style="{StaticResource WrapPanelStyle}" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource FlashcardBorderStyle}">
+                                    <StackPanel>
+                                        <TextBlock Style="{StaticResource FlashcardQuestionTextStyle}" Text="{Binding Question}" />
+                                        <TextBlock Style="{StaticResource FlashcardAnswerTextStyle}" Text="{Binding Answer}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+
+        <!--  Prompt Input + Generate Button  -->
+        <StackPanel
+            Grid.Row="3"
+            Width="400"
+            Margin="{StaticResource SectionMargin}"
+            HorizontalAlignment="Center"
+            Orientation="Vertical">
+
+            <TextBlock Style="{StaticResource PromptLabelStyle}" Text="{StaticResource PromptLabelText}" />
+            <TextBlock Style="{StaticResource PromptDescriptionStyle}" Text="{StaticResource PromptDescriptionText}" />
+            <TextBox
+                x:Name="PromptInput"
+                GotFocus="PromptInput_GotFocus"
+                LostFocus="PromptInput_LostFocus"
+                Style="{StaticResource PromptTextBoxStyle}" />
+
+            <Button
+                x:Name="GenerateButton"
+                Click="OnGenerateFlashcardsClicked"
+                Content="{StaticResource GenerateButtonText}"
+                Style="{StaticResource RoundedButtonStyle}" />
+        </StackPanel>
+    </Grid>
+</Window>

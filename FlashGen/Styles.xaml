@@ -1,0 +1,197 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Base colors  -->
+    <Color x:Key="NeutralLight">#F9FAFB</Color>
+    <Color x:Key="NeutralMedium">#E5E7EB</Color>
+    <Color x:Key="CloudGrey">#F3F4F6</Color>
+    <Color x:Key="NeutralDark">#1F2937</Color>
+    <Color x:Key="AccentBlue">#3B82F6</Color>
+    <Color x:Key="AccentBlueDark">#2563EB</Color>
+
+    <!--  Brushes  -->
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource NeutralLight}" />
+    <SolidColorBrush x:Key="DropZoneBorderBrush" Color="{StaticResource NeutralMedium}" />
+    <SolidColorBrush x:Key="DropZoneTextBrush" Color="#6B7280" />
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource NeutralDark}" />
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="#6B7280" />
+    <SolidColorBrush x:Key="ButtonBrush" Color="{StaticResource AccentBlue}" />
+    <SolidColorBrush x:Key="ButtonHoverBrush" Color="{StaticResource AccentBlueDark}" />
+
+    <Thickness x:Key="GridMargin">20</Thickness>
+    <Thickness x:Key="SectionMargin">0,10</Thickness>
+    <GridLength x:Key="DropZoneHeight">160</GridLength>
+
+    <!--  Window  -->
+    <!--<Style TargetType="Window">
+        <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontSize" Value="13" />
+    </Style>-->
+
+    <!--  Title  -->
+    <Style x:Key="TitleTextStyle" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="26" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+        <Setter Property="Margin" Value="0,0,0,12" />
+    </Style>
+
+    <!--  Drop Zone  -->
+    <Style x:Key="DropZoneBorderStyle" TargetType="Border">
+        <Setter Property="Background" Value="#F1F5F9" />
+        <Setter Property="BorderBrush" Value="{StaticResource DropZoneBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="24" />
+        <Setter Property="Margin" Value="0,10,0,0" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect
+                    BlurRadius="4"
+                    Opacity="0.08"
+                    ShadowDepth="1" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  Flashcard Container  -->
+    <Style x:Key="FlashcardPreviewBorderStyle" TargetType="Border">
+        <Setter Property="Margin" Value="0,20,0,0" />
+        <Setter Property="Padding" Value="16" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="BorderBrush" Value="#E5E7EB" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect
+                    BlurRadius="5"
+                    Opacity="0.08"
+                    ShadowDepth="1" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--<Style x:Key="DropZoneTextStyle" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="{StaticResource DropZoneTextBrush}" />
+        <Setter Property="FontWeight" Value="Medium" />
+    </Style>-->
+
+    <Style x:Key="PlaceholderTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="#666" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <!--  Flashcard List  -->
+    <Style x:Key="FlashcardBorderStyle" TargetType="Border">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="BorderBrush" Value="#D1D5DB" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="12" />
+        <Setter Property="Margin" Value="8" />
+    </Style>
+
+
+    <Style x:Key="WrapPanelStyle" TargetType="WrapPanel">
+        <Setter Property="ItemHeight" Value="Auto" />
+        <Setter Property="ItemWidth" Value="300" />
+        <Setter Property="Orientation" Value="Horizontal" />
+    </Style>
+
+    <Style x:Key="FlashcardQuestionTextStyle" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="14.5" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+    </Style>
+
+    <Style x:Key="FlashcardAnswerTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="13.5" />
+        <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <!--  Button  -->
+    <Style x:Key="RoundedButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource ButtonBrush}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Width" Value="250" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="8">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource ButtonHoverBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="#A1A1AA" />
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  Prompt Section Header  -->
+    <Style x:Key="PromptLabelStyle" TargetType="TextBlock">
+        <Setter Property="Margin" Value="0,10,0,4" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+    </Style>
+
+    <Style x:Key="PromptDescriptionStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}" />
+        <Setter Property="Margin" Value="0,0,0,6" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <!--  Input Box for Prompt  -->
+    <Style x:Key="PromptTextBoxStyle" TargetType="TextBox">
+        <Setter Property="Height" Value="36" />
+        <Setter Property="Margin" Value="0,0,0,12" />
+        <Setter Property="Padding" Value="10,4" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="#F9F9F9" />
+        <Setter Property="BorderBrush" Value="#CCC" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="#333" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border
+                        Name="Border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="6">
+                        <ScrollViewer x:Name="PART_ContentHost" Margin="0" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
