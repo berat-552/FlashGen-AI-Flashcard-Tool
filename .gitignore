@@ -362,4 +362,15 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-appsettings.Development.json
+.idea
+
+FlashGenBackend/.env
+
+# Python
+__pycache__/
+*.pyc
+venv
+
+# Windows/.NET user files
+*.user
+*.vs/

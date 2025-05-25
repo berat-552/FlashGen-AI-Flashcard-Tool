@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace FlashGen;
+namespace FlashGenDesktop;
 
 public static class Extensions
 {

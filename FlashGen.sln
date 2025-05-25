@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlashGen", "FlashGen\FlashGen.csproj", "{7FFBDE77-1749-4617-A5C3-CE7BA04EDDFC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlashGenDesktop", "FlashGen\FlashGenDesktop.csproj", "{7FFBDE77-1749-4617-A5C3-CE7BA04EDDFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

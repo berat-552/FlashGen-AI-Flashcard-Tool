@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using FlashGenDesktop;
 using System.IO;
 using System.Windows;
 using System.Windows.Media;
@@ -7,8 +7,6 @@ namespace FlashGen;
 
 public partial class MainWindow : Window
 {
-
-    private readonly string _cohereApiKey;
     private readonly string _placeholderText =
         "e.g. Add: 'Use simple terms and short answers'";
 
@@ -19,29 +17,9 @@ public partial class MainWindow : Window
         InitializeComponent();
         PromptInput.Text = _placeholderText;
         PromptInput.Foreground = new SolidColorBrush(Color.FromRgb(136, 136, 136));
-
-        // Load from appsettings.json
-        var config = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.development.json", optional: false, reloadOnChange: true)
-            .Build();
-
-        _cohereApiKey = config["CohereApiKey"] ?? string.Empty;
-
-        if (string.IsNullOrWhiteSpace(_cohereApiKey))
-        {
-            MessageBox.Show(
-                "Cohere API key is missing in appsettings.json.",
-                "Missing API Key",
-                MessageBoxButton.OK,
-                MessageBoxImage.Error);
-
-            return;
-        }
     }
 
-    private async void OnGenerateFlashcardsClicked(
-        object sender, RoutedEventArgs e)
+    private async void OnGenerateFlashcardsClicked(object sender, RoutedEventArgs e)
     {
         if (string.IsNullOrWhiteSpace(_droppedFilePath))
         {
@@ -50,13 +28,23 @@ public partial class MainWindow : Window
                 "No File",
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
-
             return;
         }
 
-        string fileContents = File.ReadAllText(_droppedFilePath);
+        string fileContents = File.ReadAllText(_droppedFilePath).Trim();
+
+        if (string.IsNullOrWhiteSpace(fileContents))
+        {
+            MessageBox.Show(
+                "The selected file is empty.",
+                "Empty File",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+            return;
+        }
+
         string userPrompt = PromptInput.Text.Trim();
-        var cohereClient = new CohereClient(_cohereApiKey);
+        var backendClient = new BackendClient();
 
         GenerateButton.IsEnabled = false;
         GenerateButton.Content = "Generating...";
@@ -64,8 +52,10 @@ public partial class MainWindow : Window
         try
         {
             string aiResponseText =
-                await cohereClient.GenerateFlashcardsAsync(
+                await backendClient
+                    .GenerateFlashcardsAsync(
                     fileContents, userPrompt);
+
             var flashcards = Flashcard.Parse(aiResponseText);
 
             if (flashcards.Count == 0)
@@ -85,7 +75,7 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             MessageBox.Show(
-                "Error contacting Cohere:\n" + ex.Message,
+                "An error occurred while contacting the backend:\n" + ex.Message,
                 "API Error",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
